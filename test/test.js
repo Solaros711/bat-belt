@@ -226,3 +226,39 @@ describe('range', async assert => {
   })
 })
 
+describe('extend', async assert => {
+
+  assert({
+    given: 'destination, source',
+    should: 'return an object with additional information from a source' ,
+    actual: exercises.extend({a: 1}, {b: 2}),
+    expected: {a: 1, b: 2}
+  })
+
+  assert({
+    given: 'destination, sources',
+    should: 'return an object with additional information from multiple sources',
+    actual: exercises.extend({a: 1}, {b: 2}, {c: 3}),
+    expected: {a: 1, b: 2, c: 3}
+  })
+
+  var obj1 = {a: 1}
+  var obj2 = {b: 2}
+  exercises.extend(obj1, obj2)
+  assert({
+    given: 'destination, sources',
+    should: 'Should mutate the destination object and not make a duplicate.',
+    actual: obj1,
+    expected: {a: 1, b: 2}
+  })
+})
+
+describe('times', async assert => {
+
+  assert({
+    given: 'n, iteratee',
+    should: 'Returns an array of returned values based on the iteratee' ,
+    actual: exercises.times(5, x => x+3),
+    expected: [3,4,5,6,7]
+  })
+})
